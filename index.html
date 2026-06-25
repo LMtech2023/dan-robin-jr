@@ -36,7 +36,17 @@
              alt="Dan A Robin Jr LLC — Attorney At Law"
              class="header__logo-img"/>
       </div>
-      <nav>
+      <button
+        class="nav-toggle"
+        type="button"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="site-nav">
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+        <span class="nav-toggle__bar"></span>
+      </button>
+      <nav class="site-nav" id="site-nav">
         <ul class="nav">
           <li class="nav__item"><a href="#">Home</a></li>
           <li class="nav__item"><a href="#">About</a></li>
@@ -49,6 +59,7 @@
       </nav>
     </div>
   </div>
+  <div class="nav-overlay" aria-hidden="true"></div>
 </header>
 
 <!-- HERO / MAIN STAGE -->
@@ -479,7 +490,7 @@
 
     <div class="footer__bottom">
       <div class="footer__copy">
-        &copy; 2025 The Law Offices of Dan A. Robin, Jr. &nbsp;|&nbsp; All Rights Reserved
+        &copy; 2026 The Law Offices of Dan A. Robin, Jr. &nbsp;|&nbsp; All Rights Reserved
       </div>
       <div class="footer__disclaimer">
         Attorney advertising. Prior results do not guarantee a similar outcome. The information on this website is for general informational purposes only.

@@ -185,6 +185,50 @@ img { max-width: 100%; height: auto; display: block; }
 .nav__cta a::after { display: none; }
 
 /* =============================================
+   MOBILE NAV TOGGLE
+   ============================================= */
+.nav-toggle {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: transparent;
+  border: 1px solid rgba(184, 134, 42, 0.4);
+  border-radius: 3px;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 1002;
+  transition: border-color 0.25s, background 0.25s;
+}
+.nav-toggle:hover {
+  border-color: var(--clr-gold-500);
+  background: rgba(184, 134, 42, 0.08);
+}
+.nav-toggle__bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-gold-400);
+  border-radius: 1px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.site-header--nav-open .nav-toggle__bar:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.site-header--nav-open .nav-toggle__bar:nth-child(2) {
+  opacity: 0;
+}
+.site-header--nav-open .nav-toggle__bar:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+.nav-overlay {
+  display: none;
+}
+
+/* =============================================
    HERO / MAIN STAGE
    ============================================= */
 .hero {
@@ -1189,6 +1233,67 @@ img { max-width: 100%; height: auto; display: block; }
    RESPONSIVE
    ============================================= */
 @media (max-width: 1024px) {
+  .nav-toggle {
+    display: flex;
+  }
+  .site-nav {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: min(320px, 85vw);
+    height: 100vh;
+    height: 100dvh;
+    background: var(--clr-navy-900);
+    border-left: 2px solid var(--clr-gold-500);
+    box-shadow: -8px 0 40px rgba(0, 0, 0, 0.5);
+    z-index: 1001;
+    padding: 96px 32px 40px;
+    overflow-y: auto;
+    transform: translateX(100%);
+    transition: transform 0.35s ease;
+    visibility: hidden;
+  }
+  .site-header--nav-open .site-nav {
+    transform: translateX(0);
+    visibility: visible;
+  }
+  .nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(3, 17, 31, 0.7);
+    z-index: 1000;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  .site-header--nav-open .nav-overlay {
+    display: block;
+    opacity: 1;
+  }
+  .site-nav .nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+  .site-nav .nav__item a {
+    display: block;
+    font-size: 13px;
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 0;
+  }
+  .site-nav .nav__item a::after {
+    display: none;
+  }
+  .site-nav .nav__cta {
+    margin-top: 24px;
+  }
+  .site-nav .nav__cta a {
+    display: block;
+    text-align: center;
+    padding: 16px 20px;
+    font-size: 12px;
+    border-radius: 3px;
+  }
   .hero__inner { grid-template-columns: 1fr; }
   .hero__right { display: none; }
   .about__inner { grid-template-columns: 1fr; }
@@ -1209,6 +1314,4 @@ img { max-width: 100%; height: auto; display: block; }
   .results__grid { grid-template-columns: 1fr 1fr; }
   .footer__grid { grid-template-columns: 1fr; }
   .cta-banner__inner { flex-direction: column; text-align: center; }
-  nav { display: none; }
-  .nav__cta { display: none; }
 }
