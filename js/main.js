@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     (entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          entry.target.classList.add('reveal--visible');
           observer.unobserve(entry.target);
         }
       });
@@ -15,18 +15,17 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const header = document.querySelector('.site-header');
   if (header) {
-    window.addEventListener('scroll', () => {
-      header.style.boxShadow =
-        window.scrollY > 10
-          ? '0 4px 30px rgba(0,0,0,0.7)'
-          : '0 4px 30px rgba(0,0,0,0.5)';
-    });
+    const updateHeaderShadow = () => {
+      header.classList.toggle('site-header--scrolled', window.scrollY > 10);
+    };
+    updateHeaderShadow();
+    window.addEventListener('scroll', updateHeaderShadow);
   }
 
-  const navToggle = document.querySelector('.nav-toggle');
-  const navOverlay = document.querySelector('.nav-overlay');
+  const navToggle = document.querySelector('.site-header__toggle');
+  const navOverlay = document.querySelector('.site-header__overlay');
   const siteNav = document.getElementById('site-nav');
-  const navLinks = siteNav?.querySelectorAll('a');
+  const navLinks = siteNav?.querySelectorAll('.site-nav__link');
 
   const setNavOpen = (open) => {
     if (!header || !navToggle) return;
@@ -34,9 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navToggle.setAttribute('aria-expanded', String(open));
     navToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     document.body.style.overflow = open ? 'hidden' : '';
-    if (navOverlay) {
-      navOverlay.setAttribute('aria-hidden', String(!open));
-    }
+    navOverlay?.setAttribute('aria-hidden', String(!open));
   };
 
   navToggle?.addEventListener('click', () => {
